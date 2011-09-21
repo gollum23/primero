@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% csrf_token %}
+    <title>Resultados Twitter</title>
+    <style>
+        body{
+            text-align: center;
+            font-family: verdana;
+            font-size: 1em;
+            background: black;
+            /*height: 100%;
+        }
+        html{
+            height: 100%*/
+        }
+        ul{
+            list-style: none;
+            position: relative;
+            left: -25px;
+        }
+
+        div#wrap{
+            width: 800px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 5px;
+            background: white;
+            text-align: left;
+            overflow: hidden;
+
+        }
+        div#tweet{
+            width: 100%;
+            height: auto;
+            margin: 3px 0;
+            padding: 5px;
+            float: left;
+            background: #99ccff;
+        }
+        div#avatar{
+            float: left;
+            height: 48px;
+            width: 48px;
+        }
+        div#mensaje{
+            float: left;
+            width: 700px;
+            padding: 5px;
+        }
+        div#usuario{
+            float: left;
+            width: 100%;
+            padding: 2px;
+            font-weight: bold;
+        }
+        div#since{
+            float: left;
+            width: 100%;
+            padding: 2px;
+            font-weight: bold;
+        }
+
+        .esquinas{
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap" class="esquinas">
+<div id="formulario">
+    <form action="" method="POST">
+
+        {{ formulario }}
+        <input type="submit" value="Buscar"/>
+    </form>
+
+</div>
+    <ul>
+        {% for tweet in tweets %}
+            <div id="tweet" class="esquinas">
+                <li>
+                   <div id="usuario"><a href="http://twitter.com/{{ tweet.usuario }}">{{ tweet.usuario }}</a> dice:</div>
+                   <div id="avatar"><img src="{{ tweet.avatar }}"></div>
+                   <div id="mensaje">{{ tweet.mensaje }}</div>
+                   <br style="clear: both;" />
+                   <div id="since">Escrito hace: {{ tweet.timestamp|timesince:now }}</div>
+
+                </li>
+            </div>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+<!--
+
+/*
+Auto Refresh Page with Time script
+By JavaScript Kit (javascriptkit.com)
+Over 200+ free scripts here!
+*/
+
+//enter refresh time in "minutes:seconds" Minutes should range from 0 to
+// inifinity. Seconds should range from 0 to 59
+/*var limit="5:00"
+
+if (document.images){
+var parselimit=limit.split(":")
+parselimit=parselimit[0]*60+parselimit[1]*1
+}
+function beginrefresh(){
+if (!document.images)
+return
+if (parselimit==1)
+window.location.reload()
+else{
+parselimit-=1
+curmin=Math.floor(parselimit/60)
+cursec=parselimit%60
+if (curmin!=0)
+curtime=curmin+" minutes and "+cursec+" seconds left until page refresh!"
+else
+curtime=cursec+" seconds left until page refresh!"
+window.status=curtime
+setTimeout("beginrefresh()",1000)
+}
+}
+
+window.onload=beginrefresh*/
+//-->
+</script>
+</body>
+</html>
