@@ -6,18 +6,23 @@
     <style>
         body{
             text-align: center;
-            font-family: verdana;
+            font-family: Verdana,Arial,sans-serif;
             font-size: 1em;
             background: black;
-            /*height: 100%;
-        }
-        html{
-            height: 100%*/
         }
         ul{
             list-style: none;
             position: relative;
             left: -25px;
+        }
+
+        ul li{
+            width: 100%;
+            height: auto;
+            margin: 3px 0;
+            padding: 5px;
+            float: left;
+            background: #99ccff;
         }
 
         div#wrap{
@@ -29,14 +34,6 @@
             text-align: left;
             overflow: hidden;
 
-        }
-        div#tweet{
-            width: 100%;
-            height: auto;
-            margin: 3px 0;
-            padding: 5px;
-            float: left;
-            background: #99ccff;
         }
         div#avatar{
             float: left;
@@ -72,7 +69,6 @@
 <div id="wrap" class="esquinas">
 <div id="formulario">
     <form action="" method="POST">
-
         {{ formulario }}
         <input type="submit" value="Buscar"/>
     </form>
@@ -80,8 +76,7 @@
 </div>
     <ul>
         {% for tweet in tweets %}
-            <div id="tweet" class="esquinas">
-                <li>
+                <li class="esquinas">
                    <div id="usuario"><a href="http://twitter.com/{{ tweet.usuario }}">{{ tweet.usuario }}</a> dice:</div>
                    <div id="avatar"><img src="{{ tweet.avatar }}"></div>
                    <div id="mensaje">{{ tweet.mensaje }}</div>
@@ -89,7 +84,6 @@
                    <div id="since">Escrito hace: {{ tweet.timestamp|timesince:now }}</div>
 
                 </li>
-            </div>
         {% endfor %}
     </ul>
 </div>
